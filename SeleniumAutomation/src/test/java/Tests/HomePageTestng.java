@@ -11,7 +11,7 @@ public class HomePageTestng extends TestBase {
 	public void test_homepageTest() throws IOException, InterruptedException {
 
 		HomePageHelper homepageHelper = new HomePageHelper(getDriver());
-		homepageHelper.testHomePage();
+		homepageHelper.testOneWayFlightBookingFlow("Delhi");
 
 	}
 }

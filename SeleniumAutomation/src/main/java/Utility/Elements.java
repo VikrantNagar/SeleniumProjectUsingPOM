@@ -15,7 +15,8 @@ public class Elements {
 	public Elements(WebDriver driver) {
 		this.driver = driver;
 	}
-
+	
+	//Method to wait for element to visible on a page
 	public static void waitForElementToVisibleOnPage(WebDriver driver, WebElement element, Duration totalTimeToWaitInSeconds) {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, totalTimeToWaitInSeconds);
@@ -27,13 +28,13 @@ public class Elements {
 		}
 	}
 	
-
-	public static void clickElement(WebDriver driver, WebElement element) throws InterruptedException {
+	//Method to click an element
+	public static void clickElement(WebDriver driver, WebElement element) {
 		waitForElementToVisibleOnPage(driver, element, Duration.ofSeconds(3));
 		element.click();
 	}
 	
-	
+	//Method to check that an element is present or not
 	public static boolean isElementPresent(WebDriver driver, WebElement element) throws InterruptedException {
 		Thread.sleep(1000);
 		try {
@@ -47,5 +48,11 @@ public class Elements {
 		
 		
 	}
+
+	public static void sendText(WebDriver driver, String text, WebElement element) {
+		waitForElementToVisibleOnPage(driver, element, Duration.ofSeconds(3));
+			element.sendKeys(text);
+			System.out.println(text + "- is entered");		
+			}
 
 }

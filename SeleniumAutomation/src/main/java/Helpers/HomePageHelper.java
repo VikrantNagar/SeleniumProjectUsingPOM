@@ -20,13 +20,19 @@ public class HomePageHelper {
 		PageFactory.initElements(driver, HomePage.class);
 	}
 
-	public void testHomePage() throws InterruptedException {
+	public void testOneWayFlightBookingFlow(String departureLocation) throws InterruptedException {
 
-		//Click on how to play 
-		homepage.clickHowToPlay();
+		//Click on flights
+		homepage.clickFlights();
 
 		//Click on poker rules option in drop-down
-		homepage.clickPokerRules();
+		homepage.clickOneWayFlights();
+		
+		//Click on leaving from text field
+		homepage.clickLeavingFrom();
+		
+		//enter departure location
+		homepage.enterDepartureLocation(departureLocation);
 
 	}
 

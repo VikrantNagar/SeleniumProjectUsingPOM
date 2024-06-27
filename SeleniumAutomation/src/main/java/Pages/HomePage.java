@@ -18,18 +18,33 @@ public class HomePage {
 		elements = new Elements(driver);
 	}
 
-	@FindBy(xpath = "//li[@class = 'header_active_li'][1]")
-	private WebElement howToPlay;
+	@FindBy(xpath = "//span[contains(text(),'Flights')]")
+	private WebElement flights;
 
-	@FindBy(xpath = "//ul[@class = 'web-dropdown-1']/li[2]")
-	private WebElement pokerRules;
+	@FindBy(xpath = "//span[contains(text(),'One-way')]")
+	private WebElement oneWayFlights;
+	
+	@FindBy(xpath = "//button[@aria-label='Leaving from']")
+	private WebElement leavingFrom;
+	
+	@FindBy(xpath = "//input[@placeholder = 'Leaving from']")
+	private WebElement departureFrom;
+	
 
-	public void clickHowToPlay() throws InterruptedException {
-		Elements.clickElement(driver, howToPlay);
+	public void clickFlights(){
+		Elements.clickElement(driver, flights);
 	}
 
-	public void clickPokerRules() throws InterruptedException {
-		Elements.clickElement(driver, pokerRules);
+	public void clickOneWayFlights() {
+		Elements.clickElement(driver, oneWayFlights);
+	}
+	
+	public void clickLeavingFrom() {
+		Elements.clickElement(driver, leavingFrom);
+	}
+	
+	public void enterDepartureLocation(String departureLocation) {
+		Elements.sendText(driver, departureLocation, departureFrom);
 	}
 
 }

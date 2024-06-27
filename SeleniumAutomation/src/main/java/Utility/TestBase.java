@@ -28,7 +28,7 @@ public class TestBase {
 			
 	}
 
-	public WebDriver setup() throws IOException {
+	public WebDriver setup() throws IOException, InterruptedException {
 		
 		String url = properties.getProperty("url");
 		System.out.println(url);
@@ -40,6 +40,8 @@ public class TestBase {
 		driver.get(url);
 		
 		driver.manage().window().maximize();
+		
+		Thread.sleep(5000);
 
 		// set driver to threadDriver so that we can reference the instance of same
 		// driver where ever required via getDriver method
@@ -47,13 +49,13 @@ public class TestBase {
 		return threadDriver.get();
 	}
 
-	public synchronized WebDriver getDriver() throws IOException {
+	public synchronized WebDriver getDriver() throws IOException, InterruptedException {
 		return setup();
 	}
 	
-	@AfterMethod
-	public void tearDown() {
-		driver.quit();
-	}
+//	@AfterMethod
+//	public void tearDown() {
+//		driver.quit();
+//	}
 
 }
