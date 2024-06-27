@@ -1,6 +1,8 @@
 package Utility;
 
 import java.time.Duration;
+import java.util.NoSuchElementException;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,20 +16,36 @@ public class Elements {
 		this.driver = driver;
 	}
 
-	public WebDriver waitForClickableElement(WebElement element) throws InterruptedException {
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-		wait.until(ExpectedConditions.visibilityOf(element));
-
-		return (driver);
-
+	public static void waitForElementToVisibleOnPage(WebDriver driver, WebElement element, Duration totalTimeToWaitInSeconds) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, totalTimeToWaitInSeconds);
+			wait.until(ExpectedConditions.visibilityOf(element));		
+		}
+		catch(org.openqa.selenium.TimeoutException e){
+			System.out.println(element +" is not visible on page");
+			System.out.println(e.getMessage());
+		}
 	}
+	
 
-	public void clickElement(WebDriver driver, WebElement elements) throws InterruptedException {
-//			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-//			wait.until(ExpectedConditions.visibilityOf(element));
-		waitForClickableElement(elements);
-		elements.click();
+	public static void clickElement(WebDriver driver, WebElement element) throws InterruptedException {
+		waitForElementToVisibleOnPage(driver, element, Duration.ofSeconds(3));
+		element.click();
+	}
+	
+	
+	public static boolean isElementPresent(WebDriver driver, WebElement element) throws InterruptedException {
+		Thread.sleep(1000);
+		try {
+			element.isDisplayed();
+			System.out.println(element + "- is displayed");
+			return true;
+		}catch(NoSuchElementException e){
+			System.out.println(element + "- is not displayed");
+			return false;
+		}
+		
+		
 	}
 
 }

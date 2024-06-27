@@ -25,11 +25,11 @@ public class HomePage {
 	private WebElement pokerRules;
 
 	public void clickHowToPlay() throws InterruptedException {
-		elements.clickElement(driver, howToPlay);
+		Elements.clickElement(driver, howToPlay);
 	}
 
 	public void clickPokerRules() throws InterruptedException {
-		elements.clickElement(driver, pokerRules);
+		Elements.clickElement(driver, pokerRules);
 	}
 
 }

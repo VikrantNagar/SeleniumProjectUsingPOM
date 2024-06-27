@@ -25,7 +25,7 @@ public class HomePageHelper {
 		//Click on how to play 
 		homepage.clickHowToPlay();
 
-		//Click on poker rules option in dropdown
+		//Click on poker rules option in drop-down
 		homepage.clickPokerRules();
 
 	}
