@@ -1,8 +1,10 @@
 package Utility;
 
+import java.awt.RenderingHints.Key;
 import java.time.Duration;
 import java.util.NoSuchElementException;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -45,14 +47,21 @@ public class Elements {
 			System.out.println(element + "- is not displayed");
 			return false;
 		}
-		
-		
 	}
 
+	//Method to send Text in a field
 	public static void sendText(WebDriver driver, String text, WebElement element) {
 		waitForElementToVisibleOnPage(driver, element, Duration.ofSeconds(3));
 			element.sendKeys(text);
+			element.sendKeys(Keys.ENTER);
 			System.out.println(text + "- is entered");		
-			}
+	}
+	
+	public static String getText(WebDriver driver, WebElement element) {
+		waitForElementToVisibleOnPage(driver, element, Duration.ofSeconds(3));
+		return element.getText();
+		
+	}
+	
 
 }

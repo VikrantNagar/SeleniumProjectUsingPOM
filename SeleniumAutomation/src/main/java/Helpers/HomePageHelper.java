@@ -20,7 +20,7 @@ public class HomePageHelper {
 		PageFactory.initElements(driver, HomePage.class);
 	}
 
-	public void testOneWayFlightBookingFlow(String departureLocation) throws InterruptedException {
+	public void testOneWayFlightBookingFlow(String departureLocation, String arrivalLocation, String date, String fromDay, String toDay) throws InterruptedException {
 
 		//Click on flights
 		homepage.clickFlights();
@@ -33,7 +33,43 @@ public class HomePageHelper {
 		
 		//enter departure location
 		homepage.enterDepartureLocation(departureLocation);
+		
+		Thread.sleep(2000);
+		
+		//click on going to field
+		homepage.clickGoingTo();
+		
+		//enter arrival location
+		homepage.enterArrivalTo(arrivalLocation);
+		
+		homepage.clickDate();
 
+//		String currMonth = homepage.getCurrentMonth();
+		
+		
+		while(true) {
+			
+			String currMonth = homepage.getCurrentMonth();
+			System.out.print(currMonth);
+			System.out.print(date);
+			
+			if(currMonth.equals(date)) {
+				break;
+			}
+			else {
+				homepage.clickNextMonth();
+			}
+		}
+		
+		//Select from date
+		homepage.clickDayElement(fromDay);
+				
+		//click Done
+		homepage.clickDone();
+		
+		//Click Search
+		homepage.clickSearch();
+		
 	}
 
 }
